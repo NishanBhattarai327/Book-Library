@@ -20,9 +20,18 @@ function addBook(title, author, pages, read) {
 
 function renderBook() {
 
-	library.forEach((book) => {
+	library.forEach((book, index) => {
 		let $book = document.createElement('div');
 		$book.setAttribute('class', 'book');
+		$book.setAttribute('data-index', index);
+
+		let $removeButton = document.createElement('button');
+		$removeButton.setAttribute('class', 'removeButton');
+		$removeButton.textContent = "Remove";
+		$removeButton.addEventListener('click', (e) => {
+			library.splice(index);
+			$removeButton.parentNode.remove();
+		});
 
 		for (let property in book) {
 			let $property = document.createElement('div');
@@ -30,6 +39,7 @@ function renderBook() {
 			$property.innerHTML = `<div class='bookContent title'>${property}</div> <div class='bookContent value'>${book[property]}</div><br>`;
 			$book.appendChild($property);
 		}
+		$book.appendChild($removeButton);
 		$displayBook.appendChild($book); 
 	});
 }
