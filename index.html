@@ -11,21 +11,21 @@
 		<div id="header">Library</div>
 		<div id="addBook">
 			<button id="newBook">New Book</button>
-			<form action="" id='form'>
+			<div id='form'>
 				<label for="formTitle">Title</label>
-				<input type="text" id='formTitle' name='title'>
+				<input type="text" id='formTitle' name='title' required>
                 <br>
-				<label for="formAuther">Author</label>
-				<input type="text" id='formAuther' name='author'>
+				<label for="formAuthor">Author</label>
+				<input type="text" id='formAuthor' name='author' required>
                 <br>
 				<label for="formPages">Pages</label>
-				<input type="text" id='formPages' name='pages'>
+				<input type="text" id='formPages' name='pages' required>
                 <br>
 				<label for="formRead">Read</label>
-				<input type="text" id='formRead' name='read'>
+				<input type="text" id='formRead' name='read' required>
 				<br>
-				<input type="submit" name='submit'>
-			</form>
+				<input type="submit" name='submit' id='submit'>
+			</div>
 		</div>
 		<div id="displayBook"></div>
 	</div>

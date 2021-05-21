@@ -5,21 +5,43 @@ let library = [
 ];
 
 let $displayBook = document.querySelector('#displayBook');
-let $form = document.querySelector('#form');
-
 let $newBook = document.querySelector('#newBook');
-$newBook.addEventListener('click', (event) => {
-	$form.style.display = 'block';
-});
+let $title = document.querySelector('#formTitle');
+let $author = document.querySelector('#formAuthor');
+let $pages = document.querySelector('#formPages');
+let $read = document.querySelector('#formRead');
+let $submit = document.querySelector('#submit');
 
+$newBook.addEventListener('click', addNewBook);
+$submit.addEventListener('click', submitNewBook);
+
+function addNewBook() {
+	document.querySelector('#form').style.display = 'block';
+}
+
+function submitNewBook() {
+	console.log('hi')
+	addBook($title.value, $author.value, $pages.value, $read.value);
+	renderBook();
+	$title.value = '';
+	$author.value = '';
+	$pages.value = '';
+	$read.value = '';
+	document.querySelector('#form').style.display = 'none';
+}
 
 //this function will add book objs to library
 function addBook(title, author, pages, read) {
 	library.push({title, author, pages, read});
 }
+function removeAllChild(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+}
 
 function renderBook() {
-
+	removeAllChild($displayBook);
 	library.forEach((book, index) => {
 		let $book = document.createElement('div');
 		$book.setAttribute('class', 'book');
