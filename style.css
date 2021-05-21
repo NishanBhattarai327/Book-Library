@@ -14,3 +14,7 @@
 	display: inline-block;
 	margin: 5px;
 }
+
+#form {
+	display: none;
+}

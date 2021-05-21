@@ -5,6 +5,12 @@ let library = [
 ];
 
 let $displayBook = document.querySelector('#displayBook');
+let $form = document.querySelector('#form');
+
+let $newBook = document.querySelector('#newBook');
+$newBook.addEventListener('click', (event) => {
+	$form.style.display = 'block';
+});
 
 
 //this function will add book objs to library
