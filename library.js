@@ -13,15 +13,16 @@ let $read = document.querySelector('#formRead');
 let $submit = document.querySelector('#submit');
 
 $newBook.addEventListener('click', addNewBook);
-$submit.addEventListener('click', submitNewBook);
+$submit.addEventListener('submit', submitNewBook);
 
 function addNewBook() {
 	document.querySelector('#form').style.display = 'block';
 }
 
 function submitNewBook() {
-	console.log('hi')
-	addBook($title.value, $author.value, $pages.value, $read.value);
+	console.log('hi');
+	let read = $read.value ? 'Already read' : 'Not read yet';
+	addBook($title.value, $author.value, $pages.value, read);
 	renderBook();
 	$title.value = '';
 	$author.value = '';

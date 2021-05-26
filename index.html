@@ -11,21 +11,21 @@
 		<div id="header">Library</div>
 		<div id="addBook">
 			<button id="newBook">New Book</button>
-			<div id='form'>
+			<form action="" id='form'>
 				<label for="formTitle">Title</label>
-				<input type="text" id='formTitle' name='title' required>
+				<input type="text" id='formTitle' name='title' placeholder="title of book" required>
                 <br>
 				<label for="formAuthor">Author</label>
-				<input type="text" id='formAuthor' name='author' required>
+				<input type="text" id='formAuthor' name='author' placeholder="author of book" required>
                 <br>
 				<label for="formPages">Pages</label>
-				<input type="text" id='formPages' name='pages' required>
+				<input type="number" id='formPages' name='pages' placeholder="Number of pages in book" required>
                 <br>
 				<label for="formRead">Read</label>
-				<input type="text" id='formRead' name='read' required>
+				<input type="checkbox" id='formRead' name='read' value='true' required>
 				<br>
 				<input type="submit" name='submit' id='submit'>
-			</div>
+			</form>
 		</div>
 		<div id="displayBook"></div>
 	</div>
