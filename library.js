@@ -1,40 +1,59 @@
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
+
+	toggleRead() {
+		if (this.read === 'Not read yet') {
+			this.read = 'Already read';
+		} else {
+			this.read = 'Not read yet';
+		}
+	}
+};
+
 //all of book objs will be stored in this arrray
 let library = [
-	{title: 'Harry Potter', author: 'J K Rowely', pages: 560, read: false},
-	{title: 'Fantastic Beast', author: 'J K Rowely', pages: 560, read: false}
+	new Book('Harry Potter', 'J K Rowely', 550, 'Not read yet'),
+	new Book('Fantastic beast', 'J K Rowely', 550, 'Not read yet')
 ];
 
 let $displayBook = document.querySelector('#displayBook');
-let $newBook = document.querySelector('#newBook');
-let $title = document.querySelector('#formTitle');
-let $author = document.querySelector('#formAuthor');
-let $pages = document.querySelector('#formPages');
-let $read = document.querySelector('#formRead');
-let $submit = document.querySelector('#submit');
+let $addBookButton = document.querySelector('#addNewBook');
+let $form = document.querySelector('#form');
 
-$newBook.addEventListener('click', addNewBook);
-$submit.addEventListener('submit', submitNewBook);
+$addBookButton.addEventListener('click', addNewBook);
+$form.addEventListener('submit', submitNewBook);
 
 function addNewBook() {
-	document.querySelector('#form').style.display = 'block';
+	if ($form.style.display == 'block'){
+		$form.style.display = 'none';
+	} else {
+		$form.style.display = 'block';
+	}
 }
 
-function submitNewBook() {
-	console.log('hi');
-	let read = $read.value ? 'Already read' : 'Not read yet';
-	addBook($title.value, $author.value, $pages.value, read);
+function submitNewBook(event) {
+	event.preventDefault();
+	let read = $form.read.value ? 'Already read' : 'Not read yet';
+	addBook($form.title.value, $form.author.value, $form.pages.value, read);
 	renderBook();
-	$title.value = '';
-	$author.value = '';
-	$pages.value = '';
-	$read.value = '';
-	document.querySelector('#form').style.display = 'none';
+	$form.title.value = '';
+	$form.author.value = '';
+	$form.pages.value = '';
+	$form.read.value = '';
+	$form.style.display = 'none';
 }
 
 //this function will add book objs to library
 function addBook(title, author, pages, read) {
-	library.push({title, author, pages, read});
+	let book = new Book(title, author, pages, read);
+	library.push(book);
 }
+
 function removeAllChild(parent) {
 	while (parent.firstChild) {
 		parent.removeChild(parent.firstChild);
@@ -49,6 +68,14 @@ function renderBook() {
 		$book.setAttribute('data-index', index);
 
 		let $removeButton = document.createElement('button');
+		let $toggleRead = document.createElement('button');
+
+		$toggleRead.setAttribute('class', 'toggleRead');
+		$toggleRead.textContent = book.read;
+		$toggleRead.addEventListener('click', (e) => {
+			book.toggleRead();
+			renderBook();
+		});
 		$removeButton.setAttribute('class', 'removeButton');
 		$removeButton.textContent = "Remove";
 		$removeButton.addEventListener('click', (e) => {
@@ -63,7 +90,9 @@ function renderBook() {
 			$book.appendChild($property);
 		}
 		$book.appendChild($removeButton);
+		$book.appendChild($toggleRead);
 		$displayBook.appendChild($book); 
 	});
 }
 renderBook();
+
