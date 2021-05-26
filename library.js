@@ -68,11 +68,11 @@ function renderBook() {
 		$book.setAttribute('data-index', index);
 
 		let $removeButton = document.createElement('button');
-		let $toggleRead = document.createElement('button');
+		let $toggleReadButton = document.createElement('button');
 
-		$toggleRead.setAttribute('class', 'toggleRead');
-		$toggleRead.textContent = book.read;
-		$toggleRead.addEventListener('click', (e) => {
+		$toggleReadButton.setAttribute('class', 'toggleRead');
+		$toggleReadButton.textContent = book.read;
+		$toggleReadButton.addEventListener('click', (e) => {
 			book.toggleRead();
 			renderBook();
 		});
@@ -90,7 +90,7 @@ function renderBook() {
 			$book.appendChild($property);
 		}
 		$book.appendChild($removeButton);
-		$book.appendChild($toggleRead);
+		$book.appendChild($toggleReadButton);
 		$displayBook.appendChild($book); 
 	});
 }
