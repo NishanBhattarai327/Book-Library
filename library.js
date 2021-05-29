@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////
+///////////////////////Functions and Class//////////////////////
+////////////////////////////////////////////////////////////////
+
 class Book {
 	constructor(title, author, pages, read) {
 		this.title = title;
@@ -5,30 +9,24 @@ class Book {
 		this.pages = pages;
 		this.read = read;
 	}
-
-	toggleRead() {
-		if (this.read === 'Not read yet') {
-			this.read = 'Already read';
-		} else {
-			this.read = 'Not read yet';
-		}
-	}
 };
 
-//all of book objs will be stored in this arrray
-let library = [
-	new Book('Harry Potter', 'J K Rowely', 550, 'Not read yet'),
-	new Book('Fantastic beast', 'J K Rowely', 550, 'Not read yet')
-];
+function toggleRead(bookObj) {
+	if (bookObj.read === 'Not read yet') {
+		bookObj.read = 'Already read';
+	} else {
+		bookObj.read = 'Not read yet';
+	}
+}
 
-let $displayBook = document.querySelector('#displayBook');
-let $addBookButton = document.querySelector('#addNewBook');
-let $form = document.querySelector('#form');
+function updateStorage(book = null) {
+	if (book !== null) {
+		library.push(book);
+	}
+	localStorage.setItem('library', JSON.stringify(library));
+}
 
-$addBookButton.addEventListener('click', addNewBook);
-$form.addEventListener('submit', submitNewBook);
-
-function addNewBook() {
+function toggleForm() {
 	if ($form.style.display == 'block'){
 		$form.style.display = 'none';
 	} else {
@@ -38,20 +36,20 @@ function addNewBook() {
 
 function submitNewBook(event) {
 	event.preventDefault();
-	let read = $form.read.value ? 'Already read' : 'Not read yet';
-	addBook($form.title.value, $form.author.value, $form.pages.value, read);
+	let read = $form.read.checked ? 'Already read' : 'Not read yet';
+	addBookToLibrary($form.title.value, $form.author.value, $form.pages.value, read);
 	renderBook();
 	$form.title.value = '';
 	$form.author.value = '';
 	$form.pages.value = '';
-	$form.read.value = '';
+	$form.read.checked = false;
 	$form.style.display = 'none';
 }
 
 //this function will add book objs to library
-function addBook(title, author, pages, read) {
+function addBookToLibrary(title, author, pages, read) {
 	let book = new Book(title, author, pages, read);
-	library.push(book);
+	updateStorage(book);
 }
 
 function removeAllChild(parent) {
@@ -61,38 +59,63 @@ function removeAllChild(parent) {
 }
 
 function renderBook() {
-	removeAllChild($displayBook);
+	removeAllChild($bookRenderingSpace);
 	library.forEach((book, index) => {
-		let $book = document.createElement('div');
-		$book.setAttribute('class', 'book');
-		$book.setAttribute('data-index', index);
+		let $bookCard = document.createElement('div');
+		$bookCard.setAttribute('class', 'book');
 
-		let $removeButton = document.createElement('button');
-		let $toggleReadButton = document.createElement('button');
+		let $bookRemoveBtn = document.createElement('button');
+		let $bookToggleReadBtn = document.createElement('button');
 
-		$toggleReadButton.setAttribute('class', 'toggleRead');
-		$toggleReadButton.textContent = book.read;
-		$toggleReadButton.addEventListener('click', (e) => {
-			book.toggleRead();
+		$bookToggleReadBtn.setAttribute('class', 'book-toggle-read-btn');
+		$bookToggleReadBtn.textContent = book.read;
+		$bookToggleReadBtn.addEventListener('click', (e) => {
+			toggleRead(book);
+			updateStorage();
 			renderBook();
 		});
-		$removeButton.setAttribute('class', 'removeButton');
-		$removeButton.textContent = "Remove";
-		$removeButton.addEventListener('click', (e) => {
+		$bookRemoveBtn.setAttribute('class', 'book-remove-btn');
+		$bookRemoveBtn.textContent = "Remove";
+		$bookRemoveBtn.addEventListener('click', (e) => {
 			library.splice(index);
-			$removeButton.parentNode.remove();
+			updateStorage();
+			$bookRemoveBtn.parentNode.remove();
 		});
 
 		for (let property in book) {
 			let $property = document.createElement('div');
-			$property.setAttribute('class', `bookProperty ${property}`);
-			$property.innerHTML = `<div class='bookContent title'>${property}</div> <div class='bookContent value'>${book[property]}</div><br>`;
-			$book.appendChild($property);
+			$property.setAttribute('class', `book-property ${property}`);
+			$property.innerHTML = `<div class='book-content title'>${property}</div> <div class='book-content value'>${book[property]}</div><br>`;
+			$bookCard.appendChild($property);
 		}
-		$book.appendChild($removeButton);
-		$book.appendChild($toggleReadButton);
-		$displayBook.appendChild($book); 
+		$bookCard.appendChild($bookRemoveBtn);
+		$bookCard.appendChild($bookToggleReadBtn);
+		$bookRenderingSpace.appendChild($bookCard); 
 	});
 }
+
+
+///////////////////////////////////////////////////////////////
+///////////////////////Making it Work//////////////////////////
+///////////////////////////////////////////////////////////////
+
+//all of book objs will be stored in this arrray
+let library = [
+	new Book('Harry Potter', 'J K Rowely', 550, 'Not read yet'),
+	new Book('Fantastic beast', 'J K Rowely', 550, 'Not read yet')
+];
+
+if (!localStorage.getItem('library')) {
+	localStorage.setItem('library', JSON.stringify(library));
+} else {
+	library = JSON.parse(localStorage.getItem('library'));
+}
+
+let $bookRenderingSpace = document.querySelector('#space-for-book');
+let $form = document.querySelector('#form');
+
+document.querySelector('#add-book-btn').addEventListener('click', toggleForm);
+$form.addEventListener('submit', submitNewBook);
+
 renderBook();
 

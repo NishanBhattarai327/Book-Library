@@ -9,25 +9,25 @@
 <body>
 	<div id="library">
 		<div id="header">Library</div>
-		<div id="addBook">
-			<button id="addNewBook">Add Book</button>
+		<div id="add-book-section">
+			<button id="add-book-btn">Add Book</button>
 			<form action="" id='form'>
-				<label for="formTitle">Title</label>
-				<input type="text" id='formTitle' name='title' placeholder="title of book" required>
+				<label for="form-title-text">Title</label>
+				<input type="text" id='form-title-text' name='title' placeholder="title of book" required>
                 <br>
-				<label for="formAuthor">Author</label>
-				<input type="text" id='formAuthor' name='author' placeholder="author of book" required>
+				<label for="form-author-text">Author</label>
+				<input type="text" id='form-author-text' name='author' placeholder="author of book" required>
                 <br>
-				<label for="formPages">Pages</label>
-				<input type="number" id='formPages' name='pages' placeholder="Number of pages in book" required>
+				<label for="form-pages-number">Pages</label>
+				<input type="number" id='form-pages-number' name='pages' placeholder="Number of pages in book" required>
                 <br>
-				<label for="formRead">Read</label>
-				<input type="checkbox" id='formRead' name='read' value='true'>
+				<label for="form-read-checkbox">Read</label>
+				<input type="checkbox" id='form-read-checkbox' name='read'>
 				<br>
-				<input type="submit" name='submit' id='submit'>
+				<input type="submit" name='submit' id='form-submit-btn'>
 			</form>
 		</div>
-		<div id="displayBook"></div>
+		<div id="space-for-book"></div>
 	</div>
 	<script type="text/javascript" src="library.js"></script>
 </body>
