@@ -4,17 +4,27 @@
 }
 
 .book {
-	background: cyan;
+	background: #563113;
 	padding: 20px;
 	margin: 10px;
+	/*border: 2px solid rgba(86, 49, 19, 0.5);*/
+	border-radius: 5px;
+	text-align: center;
+	box-shadow: 12px 5px 1px 1px rgba(86, 49, 19, 0.2);
 }
 
 .book-content {
-	background: #fff;
+	/*background: #aaa;*/
 	display: inline-block;
 	margin: 5px;
+	color:  #ffffff;
 }
 
 #form {
 	display: none;
+}
+
+#space-for-book {
+	display:  grid;
+	grid-template-columns: 1fr 1fr 1fr;
 }

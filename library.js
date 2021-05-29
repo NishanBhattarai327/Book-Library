@@ -101,8 +101,12 @@ function renderBook() {
 
 //all of book objs will be stored in this arrray
 let library = [
-	new Book('Harry Potter', 'J K Rowely', 550, 'Not read yet'),
-	new Book('Fantastic beast', 'J K Rowely', 550, 'Not read yet')
+	new Book('Ek Chihan', ' Hridaya Chandra Singh Pradhan', 107, 'Not read yet'),
+	new Book('Muna Madan', 'Laxmi Prasad Devkota', 40, 'Not read yet'),
+	new Book('Naso', 'Guru Prasad Mainali', 125, 'Not read yet'),
+	new Book('Seto Dharati', 'Amar Neupane', 380, 'Already read'),
+	new Book('Karma', 'Sadhguru', 272, 'Not read yet'),
+	new Book('Autobiography of a Yogi', 'Paramahansa Yogananda', 448, 'Not read yet')
 ];
 
 if (!localStorage.getItem('library')) {
