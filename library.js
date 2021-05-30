@@ -77,7 +77,7 @@ function renderBook() {
 		$bookRemoveBtn.setAttribute('class', 'book-remove-btn');
 		$bookRemoveBtn.innerHTML = '&times;';
 		$bookRemoveBtn.addEventListener('click', (e) => {
-			library.splice(index);
+			library.splice(index, 1);
 			updateStorage();
 			$bookRemoveBtn.parentNode.remove();
 		});
