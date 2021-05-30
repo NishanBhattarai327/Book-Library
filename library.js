@@ -43,7 +43,7 @@ function submitNewBook(event) {
 	$form.author.value = '';
 	$form.pages.value = '';
 	$form.read.checked = false;
-	$form.style.display = 'none';
+	$popUp.style.display = 'none';
 }
 
 //this function will add book objs to library
@@ -75,7 +75,7 @@ function renderBook() {
 			renderBook();
 		});
 		$bookRemoveBtn.setAttribute('class', 'book-remove-btn');
-		$bookRemoveBtn.textContent = "Remove";
+		$bookRemoveBtn.innerHTML = '&times;';
 		$bookRemoveBtn.addEventListener('click', (e) => {
 			library.splice(index);
 			updateStorage();
@@ -85,11 +85,11 @@ function renderBook() {
 		for (let property in book) {
 			let $property = document.createElement('div');
 			$property.setAttribute('class', `book-property ${property}`);
-			$property.innerHTML = `<div class='book-content title'>${property}</div> <div class='book-content value'>${book[property]}</div><br>`;
+			$property.innerHTML = `<span class='book-content'>${book[property]}</span>`;
 			$bookCard.appendChild($property);
 		}
-		$bookCard.appendChild($bookRemoveBtn);
 		$bookCard.appendChild($bookToggleReadBtn);
+		$bookCard.appendChild($bookRemoveBtn);
 		$bookRenderingSpace.appendChild($bookCard); 
 	});
 }
@@ -117,9 +117,35 @@ if (!localStorage.getItem('library')) {
 
 let $bookRenderingSpace = document.querySelector('#space-for-book');
 let $form = document.querySelector('#form');
-
-document.querySelector('#add-book-btn').addEventListener('click', toggleForm);
 $form.addEventListener('submit', submitNewBook);
 
 renderBook();
+
+///////////////////////////////////////////////////
+///Making popup form///////////////////////////////
+//////////////////////////////////////////////////
+let $popUp = document.querySelector("#popUp");
+let $popUp_AddBookBtn = document.querySelector('#add-book-btn');
+let $popUp_closeBtn = document.querySelector(".close");
+
+// When the user clicks the button, open the $popUp 
+$popUp_AddBookBtn.onclick = function() {
+  $popUp.style.display = "block";
+}
+// When the user clicks on <span> (x), close the $popUp
+$popUp_closeBtn.onclick = function() {
+  $popUp.style.display = "none";
+}
+// When the user clicks anywhere outside of the $popUp, close it
+window.onclick = function(event) {
+  if (event.target == $popUp) {
+    $popUp.style.display = "none";
+  }
+}
+
+////////////////////////////////////////////////////////////
+//////////////////////The end///////////////////////////////
+////////////////////////////////////////////////////////////
+
+
 
