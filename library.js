@@ -80,6 +80,7 @@ function renderBook() {
 			library.splice(index, 1);
 			updateStorage();
 			$bookRemoveBtn.parentNode.remove();
+			renderBook();
 		});
 
 		for (let property in book) {
@@ -124,9 +125,9 @@ renderBook();
 ///////////////////////////////////////////////////
 ///Making popup form///////////////////////////////
 //////////////////////////////////////////////////
-let $popUp = document.querySelector("#popUp");
+let $popUp = document.querySelector("#pop-up");
 let $popUp_AddBookBtn = document.querySelector('#add-book-btn');
-let $popUp_closeBtn = document.querySelector(".close");
+let $popUp_closeBtn = document.querySelector(".pop-up-content-close");
 
 // When the user clicks the button, open the $popUp 
 $popUp_AddBookBtn.onclick = function() {

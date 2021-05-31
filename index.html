@@ -12,9 +12,9 @@
 		<div id="add-book-section">
 			<button id="add-book-btn">+</button>
 
-			<div class="modal" id="popUp">
-				<div class="modal-content">
-					<span class="close">&times;</span>
+			<div class="pop-up-window" id="pop-up">
+				<div class="pop-up-content">
+					<span class="pop-up-content-close">&times;</span>
 					<form action="" id='form'>
 						<label for="form-title-text">Title</label>
 						<input type="text" id='form-title-text' name='title' placeholder="title of book" required>
@@ -26,9 +26,12 @@
 						<input type="number" id='form-pages-number' name='pages' placeholder="Number of pages in book" required>
 		                <br>
 						<label for="form-read-checkbox">Read</label>
-						<input type="checkbox" id='form-read-checkbox' name='read'>
+						<label class="switch">
+							<input type="checkbox" id='form-read-checkbox' name='read'>
+							<span class="slider round"></span>
+						</label>
 						<br>
-						<input type="submit" name='submit' id='form-submit-btn'>
+						<input type="submit" name='submit' id='form-submit-btn' value='Add'>
 					</form>
 				</div>
 			</div>
