@@ -58,6 +58,18 @@ function removeAllChild(parent) {
 	}
 }
 
+function createToggleBookSlider() {
+	let $label = document.createElement('label');
+	$label.className = 'switch';
+	let $input = document.createElement('input');
+	$input.type = 'checkbox';
+	let $span = document.createElement('span');
+	$span.className = 'slider round';
+	$label.appendChild($input);
+	$label.appendChild($span);
+	return $label;
+}
+
 function renderBook() {
 	removeAllChild($bookRenderingSpace);
 	library.forEach((book, index) => {
@@ -65,11 +77,12 @@ function renderBook() {
 		$bookCard.setAttribute('class', 'book');
 
 		let $bookRemoveBtn = document.createElement('button');
-		let $bookToggleReadBtn = document.createElement('button');
+		let $bookToggleReadBtn = createToggleBookSlider();//document.createElement('button');
 
-		$bookToggleReadBtn.setAttribute('class', 'book-toggle-read-btn');
-		$bookToggleReadBtn.textContent = book.read;
-		$bookToggleReadBtn.addEventListener('click', (e) => {
+		// $bookToggleReadBtn.setAttribute('class', 'book-toggle-read-btn');
+		// $bookToggleReadBtn.textContent = book.read;
+		$bookToggleReadBtn.firstChild.checked = book.read === 'Already read' ? true : false;
+		$bookToggleReadBtn.firstChild.addEventListener('change', (e) => {
 			toggleRead(book);
 			updateStorage();
 			renderBook();
@@ -95,6 +108,10 @@ function renderBook() {
 	});
 }
 
+//for debugging
+let input = document.createElement('input');
+input.type = 'checkbox';
+console.log(input);
 
 ///////////////////////////////////////////////////////////////
 ///////////////////////Making it Work//////////////////////////
