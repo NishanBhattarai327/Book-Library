@@ -34,14 +34,13 @@ body {
 	background-color:#ded7cc;
 	padding: 20px;
 	margin: 10px;
-	/*border: 2px solid rgba(86, 49, 19, 0.5);*/
 	border-radius: 25px;
 	text-align: center;
 	box-shadow: 12px 5px 1px 1px rgba(86, 49, 19, 0.2);
+	max-width: 400px;
 }
 
 .book-content {
-	/*background: #aaa;*/
 	display: inline-block;
 	margin: 5px;
 }
@@ -74,11 +73,6 @@ body {
 	font-weight: bold;
 	color: grey;
 	content: ' pages';
-}
-
-#form {
-	box-shadow: 0px 1px 0px 0px #1c1b18;
-	border:2px solid #333029;
 }
 
 #add-book-btn {
@@ -156,45 +150,6 @@ body {
 	top:1px;
 }
 
-
-/* Pop up window......................................*/
-.pop-up-window {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.pop-up-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.pop-up-content-close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.pop-up-content-close:hover,
-.pop-up-content-close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-/*************************************************************/
-
 /*Toggle switch css............................................*/
 .switch {
   position: relative;
@@ -257,8 +212,79 @@ input:checked + .slider:before {
 }
 /****************************************/
 
-/*form style*/
-button, input, select, textarea {
+/* Pop up window......................................*/
+.pop-up-window {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.pop-up-content {
+  background-color: #170101;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+  color: #130000;
+}
+
+.pop-up-content-close {
+  color: #4d1e0c;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.pop-up-content-close:hover,
+.pop-up-content-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*************************************************************/
+
+
+/*form style...............................*/
+#form {
+	background-color:#e8e1e1bd;
+	border-radius: 5px;
+	font-weight: 600;
+	font-family: monospace;
+	font-size: 20px;
+}
+input{
   font-family: inherit;
   font-size: 100%;
+  padding:  5px;
+  margin:  5px;
+  box-sizing: border-box;
+  width:  95%;
+  font-weight: 600;
 }
+#form-title-text, #form-author-text, #form-pages-number {
+	border-radius: 5px;
+	padding: 10px;
+	background-color: #f9f0dbe0;
+	color: #130000;
+	font-weight: 700;
+}
+#form-title-text {
+	margin: auto;
+}
+#form-author-text {
+	background-color: #f9f0dbb3;
+}
+#form-pages-number {
+	background-color: #f9f0dbb3;
+}
+
+/*****************************************************/
